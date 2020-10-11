@@ -42,10 +42,10 @@
 		</dependency>
 		
 		<!-- Migracoes Flyway -->
-		<!--  dependency>
+		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-		</dependency-->
+		</dependency>
 		
 		<!-- Spring Boot Language Data Failed to refresh live data from process xxxx  -->
 		<dependency>
