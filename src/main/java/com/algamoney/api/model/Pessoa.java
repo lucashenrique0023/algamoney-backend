@@ -1,5 +1,6 @@
 package com.algamoney.api.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,16 +10,22 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "categoria")
-public class Categoria {
+@Table(name = "pessoa")
+public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long codigo;
 	
 	@NotNull
-	@Size(min = 3, max = 20)
+	@Size(min = 3, max = 50)
 	String nome;
+	
+	@NotNull
+	Boolean ativo;
+	
+	@Embedded
+	Endereco endereco;
 
 	public String getNome() {
 		return nome;
@@ -28,12 +35,24 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}	
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
@@ -52,7 +71,7 @@ public class Categoria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Pessoa other = (Pessoa) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
