@@ -2,6 +2,8 @@ package com.algamoney.api.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,8 +46,14 @@ public class CategoriaResource {
 	
 	@GetMapping("/{codigo}")
 	//@ResponseStatus(HttpStatus.CREATED)
-	public Categoria buscarPeloCodigo(@PathVariable Long codigo) {
-		return categoriaRepository.findById(codigo).orElseThrow();
+	public ResponseEntity<?> buscarPeloCodigo(@PathVariable Long codigo) {
+		try {
+			Categoria categoria = categoriaRepository.findById(codigo).orElseThrow();
+			return ResponseEntity.ok(categoria);
+		} catch (NoSuchElementException e) {
+			return ResponseEntity.notFound().build();
+		}
+		
 	}
 
 }
