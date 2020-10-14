@@ -18,16 +18,26 @@ public class PessoaService {
 	
 	public Pessoa atualizar(Long codigo, Pessoa pessoa) {
 		
+		Pessoa pessoaSalva = encontrarPessoa(codigo);
+		BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
+		pessoaRepository.save(pessoaSalva);
+		return pessoaSalva;
+		
+	}
+	
+	public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
+		Pessoa pessoa = encontrarPessoa(codigo);
+		pessoa.setAtivo(ativo);
+		pessoaRepository.save(pessoa);
+	}
+	
+	private Pessoa encontrarPessoa(Long codigo) {
 		try {
 			Pessoa pessoaSalva = pessoaRepository.findById(codigo).orElseThrow();
-			BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
-			pessoaRepository.save(pessoaSalva);
 			return pessoaSalva;
-			
 		} catch (NoSuchElementException e) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		
 	}
 
 }
