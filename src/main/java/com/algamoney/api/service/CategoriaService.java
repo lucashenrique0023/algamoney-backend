@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.algamoney.api.Repository.CategoriaRepository;
 import com.algamoney.api.model.Categoria;
+import com.algamoney.api.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {

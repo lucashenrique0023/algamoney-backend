@@ -1,4 +1,4 @@
-package com.algamoney.api.Repository;
+package com.algamoney.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

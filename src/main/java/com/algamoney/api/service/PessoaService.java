@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.algamoney.api.Repository.PessoaRepository;
 import com.algamoney.api.model.Pessoa;
+import com.algamoney.api.repository.PessoaRepository;
 
 @Service
 public class PessoaService {

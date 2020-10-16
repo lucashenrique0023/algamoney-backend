@@ -3,10 +3,10 @@ package com.algamoney.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.algamoney.api.Repository.LancamentoRepository;
-import com.algamoney.api.Repository.PessoaRepository;
 import com.algamoney.api.model.Lancamento;
 import com.algamoney.api.model.Pessoa;
+import com.algamoney.api.repository.LancamentoRepository;
+import com.algamoney.api.repository.PessoaRepository;
 import com.algamoney.api.service.exception.PessoaInativaException;
 
 @Service
