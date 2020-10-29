@@ -10,18 +10,31 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @EnableWebSecurity
 @EnableResourceServer
 @Configuration
 public class WebSecurityConfigurerAdapterCustom extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 
     @Autowired
     public void globalUserDetails(final AuthenticationManagerBuilder auth) throws Exception {
-    	auth.inMemoryAuthentication()
-		.withUser("admin").password("{noop}admin").roles("ROLE");
+    	//auth.inMemoryAuthentication()
+		//.withUser("admin").password("{noop}admin").roles("ROLE");
+    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+    
+    @Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+    
 
 	@Override
     @Bean
