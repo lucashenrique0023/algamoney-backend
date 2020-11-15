@@ -102,6 +102,12 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>2.5.0.RELEASE</version>
 		</dependency>
+		
+		<!--  metamodel -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
