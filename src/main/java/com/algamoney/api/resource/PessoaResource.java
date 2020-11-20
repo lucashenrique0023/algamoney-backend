@@ -1,6 +1,5 @@
 package com.algamoney.api.resource;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletResponse;

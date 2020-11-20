@@ -1,6 +1,10 @@
 package com.algamoney.api.service;
 
+import java.util.NoSuchElementException;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.algamoney.api.model.Lancamento;
@@ -28,5 +32,21 @@ public class LancamentoService {
 		return lancamentoRepository.save(lancamento);
 	}
 	
+	public Lancamento atualizar(Long codigo, Lancamento lancamento) {
+		
+		Lancamento lancamentoSalvo = encontrarLancamento(codigo);
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");
+		lancamentoRepository.save(lancamentoSalvo);
+		return lancamentoSalvo;
+		
+	}
 	
+	private Lancamento encontrarLancamento(Long codigo) {
+		try {
+			Lancamento lancamentoSalvo = lancamentoRepository.findById(codigo).orElseThrow();
+			return lancamentoSalvo;
+		} catch (NoSuchElementException e) {
+			throw new EmptyResultDataAccessException(1);
+		}
+	}
 }
